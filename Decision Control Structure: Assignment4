@@ -1,0 +1,103 @@
+BufferedReader
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class applicantBufferedReader {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter height (cm): ");
+        double height = Double.parseDouble(br.readLine().trim());
+
+        System.out.print("Enter age: ");
+        int age = Integer.parseInt(br.readLine().trim());
+
+        System.out.print("Citizenship code (C = citizen, N = non-citizen): ");
+        char citizenship = br.readLine().trim().toUpperCase().charAt(0);
+
+        System.out.print("Recommendee code (R = recommendee, N = non-recommendee): ");
+        char recommendee = br.readLine().trim().toUpperCase().charAt(0);
+
+        if (isAccepted(height, age, citizenship, recommendee)) {
+            System.out.println("ACCEPTED");
+        } else {
+            System.out.println("REJECTED");
+        }
+    }
+
+    static boolean isAccepted(double height, int age, char citizenship, char recommendee) {
+        // Automatic acceptance - overrides all other requirements
+        if (recommendee == 'R') {
+            return true;
+        }
+        return height >= 200 && age >= 21 && age <= 25 && citizenship == 'C';
+    }
+}
+
+Scanner
+public class applicantScanner {
+    public static void main (String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter height (cm): ");
+        double height = sc.nextDouble();
+
+        System.out.print("Enter age: ");
+        int age = sc.nextInt();
+
+        System.out.print("Citizenship code (C = citizen, N = non-citizen): ");
+        char citizenship = sc.next().trim().toUpperCase().charAt(0);
+
+        System.out.print("Recommendee code (R = recommendee, N = non-recommendee): ");
+        char recommendee = sc.next().trim().toUpperCase().charAt(0);
+
+        if (isAccepted(height, age, citizenship, recommendee)) {
+            System.out.println("ACCEPTED");
+        } else {
+            System.out.println("REJECTED");
+        }
+
+        sc.close();
+    }
+
+    static boolean isAccepted(double height, int age, char citizenship, char recommendee) {
+        if (recommendee == 'R') {
+            return true;
+        }
+        return height >= 200 && age >= 21 && age <= 25 && citizenship == 'C';
+    }
+}
+
+JOptionPane
+import javax.swing.*;
+
+public class applicantJOptionPane {
+    public static void main (String[] args){
+        String heightInput = JOptionPane.showInputDialog(null, "Enter height (cm):");
+        double height = Double.parseDouble(heightInput.trim());
+
+        String ageInput = JOptionPane.showInputDialog(null, "Enter age:");
+        int age = Integer.parseInt(ageInput.trim());
+
+        String citInput = JOptionPane.showInputDialog(null,
+                "Citizenship code (C = citizen, N = non-citizen):");
+        char citizenship = citInput.trim().toUpperCase().charAt(0);
+
+        String recInput = JOptionPane.showInputDialog(null,
+                "Recommendee code (R = recommendee, N = non-recommendee):");
+        char recommendee = recInput.trim().toUpperCase().charAt(0);
+
+        String result = isAccepted(height, age, citizenship, recommendee)
+                ? "ACCEPTED" : "REJECTED";
+
+        JOptionPane.showMessageDialog(null, result);
+    }
+
+    static boolean isAccepted(double height, int age, char citizenship, char recommendee) {
+        if (recommendee == 'R') {
+            return true;
+        }
+        return height >= 200 && age >= 21 && age <= 25 && citizenship == 'C';
+    }
+}
