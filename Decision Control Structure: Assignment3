@@ -1,0 +1,94 @@
+BufferedReader
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class scholarBufferedReader {
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter NSAT score: ");
+        double nsat = Double.parseDouble(br.readLine().trim());
+
+        System.out.print("Enter parent's monthly salary: ");
+        double salary = Double.parseDouble(br.readLine().trim());
+
+        System.out.print("Enter entrance exam score: ");
+        double exam = Double.parseDouble(br.readLine().trim());
+
+        String result = evaluate(nsat, salary, exam);
+        System.out.println("Application status: " + result);
+    }
+
+    static String evaluate(double nsat, double salary, double exam) {
+        if (salary > 10000 || nsat < 90 || exam < 85) {
+            return "REJECTED";
+        }
+        if (salary <= 3500 && (nsat + exam) / 2.0 >= 91) {
+            return "ACCEPTED";
+        }
+        return "FOR FURTHER STUDY";
+    }
+}
+
+Scanner
+import java.util.Scanner;
+
+public class scholarScanner {
+    public static void main (String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter NSAT score: ");
+        double nsat = sc.nextDouble();
+
+        System.out.print("Enter parents' monthly salary: ");
+        double salary = sc.nextDouble();
+
+        System.out.print("Enter entrance exam score: ");
+        double exam = sc.nextDouble();
+
+        String result = evaluate(nsat, salary, exam);
+        System.out.println("Application status: " + result);
+
+        sc.close();
+    }
+
+    static String evaluate(double nsat, double salary, double exam) {
+        if (salary > 10000 || nsat < 90 || exam < 85) {
+            return "REJECTED";
+        }
+        if (salary <= 3500 && (nsat + exam) / 2.0 >= 91) {
+            return "ACCEPTED";
+        }
+        return "FOR FURTHER STUDY";
+    }
+}
+
+JOptionPane
+import javax.swing.*;
+
+public class scholarJOptionPane {
+    public static void main(String[] args){
+        String nsatInput = JOptionPane.showInputDialog(null, "Enter NSAT score:");
+        double nsat = Double.parseDouble(nsatInput.trim());
+
+        String salaryInput = JOptionPane.showInputDialog(null, "Enter parents' monthly salary:");
+        double salary = Double.parseDouble(salaryInput.trim());
+
+        String examInput = JOptionPane.showInputDialog(null, "Enter entrance exam score:");
+        double exam = Double.parseDouble(examInput.trim());
+
+        String result = evaluate(nsat, salary, exam);
+        JOptionPane.showMessageDialog(null, "Application status: " + result);
+    }
+    static String evaluate(double nsat, double salary, double exam) {
+        if (salary > 10000 || nsat < 90 || exam < 85) {
+            return "REJECTED";
+        }
+        if (salary <= 3500 && (nsat + exam) / 2.0 >= 91) {
+            return "ACCEPTED";
+        }
+        return "FOR FURTHER STUDY";
+    }
+    }
